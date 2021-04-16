@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &704827287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1772147192650458, guid: c10877f7cd5764de18d46d7b777d1faa,
+    type: 3}
+  m_PrefabInstance: {fileID: 712239785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &706104633
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,8 +156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb5b88e8416911409810030625e7757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ARCamera: {fileID: 704827287}
   Arayuz_GPS_Sapma_Dusmesi_Bekleme_Mesaji: {fileID: 1316161988}
   mapCoords: {fileID: 1030325638}
+  nodeIsaretci: {fileID: 2626298074457061723, guid: 6415a9d12375f7e40b0114479528fdd8,
+    type: 3}
+  varisNoktasi: {fileID: 1998988215621904701, guid: 0e12235485a6c4b48b211b3779d23620,
+    type: 3}
+  cizgi: {fileID: 2237213572715045286, guid: 79d27114ce4a2e942bdd84becf4dcdd2, type: 3}
 --- !u!4 &706104635
 Transform:
   m_ObjectHideFlags: 0
@@ -257,7 +269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250.41, y: 808.62}
+  m_AnchoredPosition: {x: -387.58, y: 808.62}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1030325640
@@ -281,12 +293,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 57
+    m_FontSize: 39
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 57
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1

@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "1cc2322415037ece",
         "name": "com.DefaultCompany.AR_Navigasyon",
-        "processId": 12996,
+        "processId": 25346,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -17,37 +17,37 @@
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 32247,
+            "processId": 14038,
             "exited": true
         },
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 1586,
+            "processId": 17606,
             "exited": true
         },
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 7478,
+            "processId": 19828,
             "exited": true
         },
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 9801,
+            "processId": 22431,
             "exited": true
         },
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 11752,
+            "processId": 24690,
             "exited": true
         },
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 12996,
+            "processId": 25346,
             "exited": false
         }
     ],

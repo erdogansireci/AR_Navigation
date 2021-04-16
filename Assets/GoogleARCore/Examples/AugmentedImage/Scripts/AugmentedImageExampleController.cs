@@ -94,17 +94,24 @@ namespace GoogleARCore.Examples.AugmentedImage
             // not previously have a visualizer. Remove visualizers for stopped images.
             foreach (var image in _tempAugmentedImages)
             {
+
+                //bulunan resime daha önceden bir atama yapýlmýþ mý? kontrolü
                 AugmentedImageVisualizer visualizer = null;
                 _visualizers.TryGetValue(image.DatabaseIndex, out visualizer);
+
+                //bulunan resim þuan takip ediliyorsa ve o resim için ekranda çýkarýlacak bir nesne atanmadýysa içeri gir
                 if (image.TrackingState == TrackingState.Tracking && visualizer == null)
                 {
                     // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                     Anchor anchor = image.CreateAnchor(image.CenterPose);
+                    //prefabdan ilgili nesneyi al ve resmin olduðu yerde o neseneyi göster
                     visualizer = (AugmentedImageVisualizer)Instantiate(
                         AugmentedImageVisualizerPrefab, anchor.transform);
                     visualizer.Image = image;
+                    //bu nesne artýk takip ediliyor ve prefabý atandý. O yüzden listeye ekleki bir daha buraya girmesin
                     _visualizers.Add(image.DatabaseIndex, visualizer);
                 }
+                //takip edilmiyorsa ve prefabý boþ deðilse o takibi yok et ve ekrandan kaldýr.
                 else if (image.TrackingState == TrackingState.Stopped && visualizer != null)
                 {
                     _visualizers.Remove(image.DatabaseIndex);

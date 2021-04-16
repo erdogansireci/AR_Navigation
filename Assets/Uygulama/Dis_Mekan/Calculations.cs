@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class Calculations : MonoBehaviour
 {
+    //Offset dunyaya yerleşecek nesneelerin konumlarını hesaplamakta kullanılacak.
+    public float dunya_Offset_X;
+    public float dunya_Offset_Z;
+
+    //Kütüphane merrdivenlerinin tam ortası orijinimiz
+    //40.22578,28.87332
 
     //Enlem koordinatını Unity cinsinden koordinata (x-ekseni) çevir. (HESAPLAMAYI BURSAYAS ÇEVİRMEYİ UNUTMA. BUNLAR ANKARA İÇİN)
     //39.993534f - Seçilen (0,0) noktasının enlem koordinatı
@@ -24,17 +30,29 @@ public class Calculations : MonoBehaviour
         return z;
     }
 
-    //GPS'den alınan son konuma göre, Unity dünyasını gerçek dünyaya hizala.
+    //GPS'den alınan son konuma göre, Unity dünyasını gerçek dünyaya hizala ve offset değerini sakla
     public void Unity_Dunyasini_Hizala(GameObject Dis_mekan_Controller,GPS gps, GameObject mapCoords)
     {
-
         float newX = Dis_mekan_Controller.transform.position.x - Enlem2x(gps.GetLatitude());
         float newZ = Dis_mekan_Controller.transform.position.z - Boylam2z(gps.GetLongitude());
         Dis_mekan_Controller.transform.position = new Vector3(newX, 0f, newZ);
+        dunya_Offset_X = newX;
+        dunya_Offset_Z = newZ;
         Debug.Log("Lat: " + gps.GetLatitude() + "\nLong: " + gps.GetLongitude());
         Debug.Log("mapX: " + newX + "\nmapZ: " + newZ);
         mapCoords.GetComponent<Text>().text = "mapX: " + newX + "\nmapZ: " + newZ +
             "\nLat: " + gps.GetLatitude() + "\nLong: " + gps.GetLongitude();
     }
+
+    //public void Unity_Dunyasi_Aci_Ayarla(GameObject Dis_mekan_Controller, Compass compass)
+    //{
+    //    Debug.Log("Compass Degree: " + compass.trueHeading);
+    //    float derece_Sıfır_Noktasi = 308f;
+    //    derece_Offset_Y = compass.trueHeading - derece_Sıfır_Noktasi;
+    //    Dis_mekan_Controller.transform.Rotate(0f, derece_Offset_Y, 0f, Space.World);
+    //    Debug.Log("DisMekanRotation: " + Dis_mekan_Controller.transform.rotation.y +
+    //        "\ndereceOffsetY: " + derece_Offset_Y +
+    //        "\nCompass Degree: " + compass.trueHeading);
+    //}
 
 }
