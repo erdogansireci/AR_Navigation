@@ -94,11 +94,9 @@ public class Draw : MonoBehaviour
                 Quaternion.Euler(0f, 0f, 0f));
 
             //Çizgi yönünü AtoB olarak ayarla.
-            //cizgi.transform.rotation.SetFromToRotation(node1_Konum, node2_Konum);
             cizgi.transform.rotation = rotationFromAToB;
 
             //Çizgiyi aradaki mesafeye göre ölçekle.
-            //cizgi.transform.localScale.Set(0.01f, 0.01f, iki_Nokta_Arasi_Fark.magnitude);
             cizgi.transform.localScale = new Vector3(0.01f, 0.01f, iki_Nokta_Arasi_Fark.magnitude);
 
             //Anchorun çocuğu yap.

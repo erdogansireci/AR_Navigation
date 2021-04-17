@@ -34,6 +34,9 @@ public class Algoritmalar : MonoBehaviour
 
     //}
 
+    //graph = node bağlantıları ve mesafeler
+    //src = başlangıç noktası
+    //dest = hedef noktası
     //src gpsden gelen konum olacak. 
     public void Dijkstra(float[,] graph, int dest)
     {
@@ -69,6 +72,65 @@ public class Algoritmalar : MonoBehaviour
             }
 
             int i= 0;
+            for (int v = 0; v < NodeCount; v++)
+            {
+                Debug.Log("V'li for girildi:" + (++i));
+                if (!nodeSet[v].permanent &&
+                    graph[u, v] != 0 &&
+                    nodeSet[u].distFromSrc != int.MaxValue &&
+                    nodeSet[u].distFromSrc + graph[u, v] <= nodeSet[v].distFromSrc)
+                {
+
+                    nodeSet[v].distFromSrc = nodeSet[u].distFromSrc + graph[u, v];
+                    nodeSet[v].parent = u;
+                }
+
+            }
+        }
+
+        ShortestPath(nodeSet, dest);
+        shortestPath.Reverse();
+        Debug.Log("shortestpath başarili.");
+
+        foreach (int Node in shortestPath)
+        {
+
+            Debug.Log("Path: " + Node);
+        }
+    }
+
+    public void IcMekan_Dijkstra(float[,] graph, int src, int dest)
+    {
+
+        NodeCount = graph.GetLength(0);
+        Debug.Log("Node Count: " + NodeCount);
+
+        node[] nodeSet = new node[NodeCount];
+        for (int i = 0; i < NodeCount; i++)
+        {
+            nodeSet[i].distFromSrc = int.MaxValue;
+            nodeSet[i].permanent = false;
+        }
+
+        //kaynak düğümden başlaması için kaynak düğümü 0 yapıyoruz.
+        nodeSet[src].distFromSrc = 0;
+        nodeSet[src].parent = -1;
+        Debug.Log("NodeSet: " + nodeSet);
+
+        for (int count = 0; count < NodeCount - 1; count++)
+        {
+            Debug.Log("minDistance giriliyor.");
+            int u = minDistance(nodeSet);
+            Debug.Log("minDistance tamamlandı.");
+
+            nodeSet[u].permanent = true;
+
+            if (u == dest)
+            {
+                break;
+            }
+
+            int i = 0;
             for (int v = 0; v < NodeCount; v++)
             {
                 Debug.Log("V'li for girildi:" + (++i));

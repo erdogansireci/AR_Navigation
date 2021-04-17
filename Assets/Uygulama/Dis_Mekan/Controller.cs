@@ -8,7 +8,6 @@ using UnityEngine.UI;
 //2.dış mekan seçildi
 //3.hedef seçildi
 //4.Dis_Mekan.scene yüklendi (Hedef bilgisi bu scripte aktarılmalı.)
-//4.5. pusula verilerini al ve açıyı ayarla
 //5.GPS baslat. Konumu al.
 //6.Dünyayı kaydır.
 //7.Rota hesapla
@@ -26,7 +25,6 @@ public class Controller : MonoBehaviour
     public GameObject varisNoktasi;
     public GameObject cizgi;
 
-    Compass compass = new Compass();
     // Start is called before the first frame update
     IEnumerator Start()
     {
