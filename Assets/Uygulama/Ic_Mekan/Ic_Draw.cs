@@ -1,24 +1,23 @@
-﻿using GoogleARCore;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GoogleARCore;
 using UnityEngine;
 
 public class Ic_Draw : MonoBehaviour
 {
 
+    //Yol üstündeki nodeleri çizer.
     public void Node_Ciz(Node_Konumlari nodes, List<int> shortestPath, GameObject nodeIsaretci, GameObject varisNoktasi)
     {
-        Debug.Log("Node_Ciz girildi.");
 
-        //gelen nodeleri Node_Konumları sınıfındaki node_Coordinates ile eşleştir.
-        //Bulunan nodeleri ekrana çizdir.
+        //Yol üstündeki nodeleri çiz.
         foreach (var item in shortestPath)
         {
-            //Objeyi oluştur.
+            //Çizdirilecek objeyi oluştur.
             var nodePoint = Instantiate(nodeIsaretci,
-                new Vector3(nodes.node_Coordinates[item, 0] - nodes.dunya_Offset_X, -1.2f,
+                new Vector3(nodes.node_Coordinates[item, 0] - nodes.dunya_Offset_X, -1.3f,
                             nodes.node_Coordinates[item, 1] - nodes.dunya_Offset_Z),
                 Quaternion.Euler(0f, 0f, 0f));
+            nodePoint.transform.localScale = new Vector3(0.25f, 0.02f, 0.25f);
 
             //Obje konumunda anchor oluştur.
             Anchor anchor = Session.CreateAnchor(new Pose(new Vector3(nodePoint.transform.position.x,
@@ -31,29 +30,30 @@ public class Ic_Draw : MonoBehaviour
         //Varış noktasına imleç koy.
         var sonNode = shortestPath[shortestPath.Count - 1];
         var varis = Instantiate(varisNoktasi,
-            new Vector3(nodes.node_Coordinates[sonNode, 0] - nodes.dunya_Offset_X, -0.6f, 
+            new Vector3(nodes.node_Coordinates[sonNode, 0] - nodes.dunya_Offset_X, -1.1f, 
                         nodes.node_Coordinates[sonNode, 1] - nodes.dunya_Offset_Z), 
             Quaternion.Euler(0f, 0f, 0f));
+        varis.transform.localScale = new Vector3(0.125f, 0.125f, 0.125f);
 
-        Anchor anchor2 = Session.CreateAnchor(new Pose(new Vector3(varis.transform.position.x, 0f, varis.transform.position.z),
-             varis.transform.rotation));
+        Anchor anchor2 = Session.CreateAnchor(new Pose(new Vector3(varis.transform.position.x,
+            varis.transform.position.y, varis.transform.position.z), varis.transform.rotation));
 
         varis.transform.parent = anchor2.transform;
     }
 
-    //Node_Konumları sınıfından node koordinatlarını al ve herbiri arasında çizgi çiz.
-    //Burada Dış mekandaki gibi kamera konumundan çizmeye gerek yok. Çünkü kameranın
-    //olduğu yer zaten başlangıç noktası.
+    //Nodeler arası çizgileri çiz.
     public void Cizgi_Ciz(Node_Konumlari nodes, List<int> shortestPath, GameObject cizgiPrefab)
     {
-        Debug.Log("Cizgi_Ciz girildi.");
 
         for (int i = 0; i < shortestPath.Count - 1; i++)
         {
-            Vector3 node1_Konum = new Vector3(nodes.node_Coordinates[i, 0] - nodes.dunya_Offset_X , -1.2f,
-                                              nodes.node_Coordinates[i, 1] - nodes.dunya_Offset_Z);
-            Vector3 node2_Konum = new Vector3(nodes.node_Coordinates[i + 1, 0] - nodes.dunya_Offset_X, -1.2f,
-                                              nodes.node_Coordinates[i + 1, 1] - nodes.dunya_Offset_Z);
+            int node1 = shortestPath[i];
+            int node2 = shortestPath[i + 1];
+
+            Vector3 node1_Konum = new Vector3(nodes.node_Coordinates[node1, 0] - nodes.dunya_Offset_X, -1.3f,
+                                              nodes.node_Coordinates[node1, 1] - nodes.dunya_Offset_Z);
+            Vector3 node2_Konum = new Vector3(nodes.node_Coordinates[node2, 0] - nodes.dunya_Offset_X, -1.3f,
+                                              nodes.node_Coordinates[node2, 1] - nodes.dunya_Offset_Z);
 
             //İki nokta arasındaki farkı al. (Çizgi uzunluğu için)
             Vector3 iki_Nokta_Arasi_Fark = node2_Konum - node1_Konum;
@@ -80,8 +80,6 @@ public class Ic_Draw : MonoBehaviour
             Anchor anchor = Session.CreateAnchor(new Pose(new Vector3(cizgi.transform.position.x, cizgi.transform.position.y,
                 cizgi.transform.position.z), cizgi.transform.rotation));
             cizgi.transform.parent = anchor.transform;
-
-
         }
 
     }

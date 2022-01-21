@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Uygulama/Main/Ana_Menu.unity
+    guid: eb0c822037b9f6345b60e9e14fc50a0c
+  - enabled: 1
+    path: Assets/Uygulama/Ic_Mekan/Ic_Mekan.unity
+    guid: 02cc9f735890391418d17c61d3d033cf
+  - enabled: 1
+    path: Assets/Uygulama/Dis_Mekan/Dis_Mekan.unity
+    guid: 96bdebd4e85a72a448a62d81478eb59c
   m_configObjects: {}

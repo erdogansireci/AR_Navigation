@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Algoritmalar : MonoBehaviour
 {
-    float[,] graph;
     int NodeCount;
     public List<int> shortestPath = new List<int>();
 
@@ -16,35 +14,13 @@ public class Algoritmalar : MonoBehaviour
 
     }
 
-    //example
-    //void Start()
-    //{
-    //    graph = new int[5, 5]
-    //    {
-
-    //     { 0, 3, 5, 0, 0},
-    //     { 3, 0, 2, 3, 0},
-    //     { 5, 2, 0, 6, 0},
-    //     { 0, 9, 6, 0, 2},
-    //     { 0, 0, 0, 2, 0}
-
-    //   };
-
-    //    Dijkstra(graph, 0, 3);
-
-    //}
-
-    //graph = node bağlantıları ve mesafeler
-    //src = başlangıç noktası
-    //dest = hedef noktası
-    //src gpsden gelen konum olacak. 
+    //Dış mekanda kullanılacak en kısa yol algoritması
     public void Dijkstra(float[,] graph, int dest)
     {
-        //Başlangıç nodesi her zaman 1 yapıldı
+        //Şimdilik başlangıç nodesi her zaman 1 yapıldı
         int src = 0;
 
         NodeCount = graph.GetLength(0);
-        Debug.Log("Node Count: " + NodeCount);
 
         node[] nodeSet = new node[NodeCount];
         for (int i = 0; i < NodeCount; i++)
@@ -53,16 +29,13 @@ public class Algoritmalar : MonoBehaviour
             nodeSet[i].permanent = false;
         }
 
-        //kaynak düğümden başlaması için kaynak düğümü 0 yapıyoruz.
+        //Kaynak düğümden başlaması için kaynak düğümü 0 yap
         nodeSet[src].distFromSrc = 0;
         nodeSet[src].parent = -1;
-        Debug.Log("NodeSet: " + nodeSet);
 
         for (int count = 0; count < NodeCount - 1; count++)
         {
-            Debug.Log("minDistance giriliyor.");
             int u = minDistance(nodeSet);
-            Debug.Log("minDistance tamamlandı.");
 
             nodeSet[u].permanent = true;
 
@@ -71,10 +44,8 @@ public class Algoritmalar : MonoBehaviour
                 break;
             }
 
-            int i= 0;
             for (int v = 0; v < NodeCount; v++)
             {
-                Debug.Log("V'li for girildi:" + (++i));
                 if (!nodeSet[v].permanent &&
                     graph[u, v] != 0 &&
                     nodeSet[u].distFromSrc != int.MaxValue &&
@@ -90,7 +61,6 @@ public class Algoritmalar : MonoBehaviour
 
         ShortestPath(nodeSet, dest);
         shortestPath.Reverse();
-        Debug.Log("shortestpath başarili.");
 
         foreach (int Node in shortestPath)
         {
@@ -99,11 +69,11 @@ public class Algoritmalar : MonoBehaviour
         }
     }
 
+    //İç mekanda kullanılacak en kısa yol algoritması
     public void IcMekan_Dijkstra(float[,] graph, int src, int dest)
     {
 
         NodeCount = graph.GetLength(0);
-        Debug.Log("Node Count: " + NodeCount);
 
         node[] nodeSet = new node[NodeCount];
         for (int i = 0; i < NodeCount; i++)
@@ -112,16 +82,13 @@ public class Algoritmalar : MonoBehaviour
             nodeSet[i].permanent = false;
         }
 
-        //kaynak düğümden başlaması için kaynak düğümü 0 yapıyoruz.
+        //Kaynak düğümden başlaması için kaynak düğümü 0 yapıyoruz.
         nodeSet[src].distFromSrc = 0;
         nodeSet[src].parent = -1;
-        Debug.Log("NodeSet: " + nodeSet);
 
         for (int count = 0; count < NodeCount - 1; count++)
         {
-            Debug.Log("minDistance giriliyor.");
             int u = minDistance(nodeSet);
-            Debug.Log("minDistance tamamlandı.");
 
             nodeSet[u].permanent = true;
 
@@ -130,10 +97,8 @@ public class Algoritmalar : MonoBehaviour
                 break;
             }
 
-            int i = 0;
             for (int v = 0; v < NodeCount; v++)
             {
-                Debug.Log("V'li for girildi:" + (++i));
                 if (!nodeSet[v].permanent &&
                     graph[u, v] != 0 &&
                     nodeSet[u].distFromSrc != int.MaxValue &&
@@ -143,13 +108,11 @@ public class Algoritmalar : MonoBehaviour
                     nodeSet[v].distFromSrc = nodeSet[u].distFromSrc + graph[u, v];
                     nodeSet[v].parent = u;
                 }
-
             }
         }
 
         ShortestPath(nodeSet, dest);
         shortestPath.Reverse();
-        Debug.Log("shortestpath başarili.");
 
         foreach (int Node in shortestPath)
         {
@@ -158,6 +121,7 @@ public class Algoritmalar : MonoBehaviour
         }
     }
 
+    //Nodeler arasından en kısa mesafe olanın indexini döner.
     private int minDistance(node[] nodeSet)
     {
 
@@ -177,11 +141,9 @@ public class Algoritmalar : MonoBehaviour
         return min_index;
     }
 
-    int j = 0;
+    //Rota üzerindeki nodeleri sırayla listeye yazar.
     private void ShortestPath(node[] nodeSet, int dest)
     {
-        Debug.Log("NodeSet:" + nodeSet +"\nlength "+ nodeSet.Length + "\ndest: "+ dest);
-        Debug.Log("İşte burda sıkıntı olabilir moruk: " + (++j));
         if (nodeSet[dest].parent != -1)
         {
             shortestPath.Add(dest);

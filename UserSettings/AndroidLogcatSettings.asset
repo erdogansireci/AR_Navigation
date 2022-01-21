@@ -3,75 +3,57 @@
     "m_SelectedPackage": {
         "deviceId": "1cc2322415037ece",
         "name": "com.DefaultCompany.AR_Navigasyon",
-        "processId": 32194,
+        "processId": 2876,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "1cc2322415037ece",
+            "name": "com.DefaultCompany.AR_Navigasyon",
+            "processId": 21691,
+            "exited": true
+        },
+        {
+            "deviceId": "1cc2322415037ece",
+            "name": "com.DefaultCompany.AR_Navigasyon",
+            "processId": 24678,
+            "exited": true
+        },
+        {
+            "deviceId": "1cc2322415037ece",
+            "name": "com.DefaultCompany.AR_Navigasyon",
+            "processId": 3970,
+            "exited": true
+        },
+        {
+            "deviceId": "1cc2322415037ece",
+            "name": "com.DefaultCompany.AR_Navigasyon",
+            "processId": 8373,
+            "exited": true
+        },
+        {
+            "deviceId": "1cc2322415037ece",
+            "name": "com.DefaultCompany.AR_Navigasyon",
+            "processId": 24130,
+            "exited": true
+        },
+        {
+            "deviceId": "1cc2322415037ece",
             "name": "com.sec.android.app.launcher",
-            "processId": 11192,
+            "processId": 11515,
             "exited": false
         },
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 10371,
-            "exited": true
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 13663,
-            "exited": true
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 16888,
-            "exited": true
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 27587,
-            "exited": true
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 23281,
-            "exited": true
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 8712,
+            "processId": 24448,
             "exited": false
         },
         {
             "deviceId": "1cc2322415037ece",
             "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 12643,
-            "exited": false
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 17695,
-            "exited": false
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 24360,
-            "exited": false
-        },
-        {
-            "deviceId": "1cc2322415037ece",
-            "name": "com.DefaultCompany.AR_Navigasyon",
-            "processId": 32194,
+            "processId": 2876,
             "exited": false
         }
     ],
@@ -125,7 +107,7 @@
         "MemoryGroup": 2,
         "Behavior": 2
     },
-    "m_Filter": "",
+    "m_Filter": "Path:",
     "m_FilterIsRegularExpression": false,
     "m_SymbolPaths": []
 }

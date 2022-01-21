@@ -1,76 +1,60 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
-//1.uygulama aç
-//2.dış mekan seçildi
-//3.hedef seçildi
-//4.Dis_Mekan.scene yüklendi (Hedef bilgisi bu scripte aktarılmalı.)
-//5.GPS baslat. Konumu al.
-//6.Dünyayı kaydır.
+//1.uygulamayı aç
+//2.Dış mekanı seç
+//3.hedefi seç
+//4.Dis_Mekan.scene yüklendi
+//5.GPS baslat. Konumu al
+//6.Dünyayı hizala
 //7.Rota hesapla
 //8.Hangi nodelerden hangi sırayla geçildiğini al
-//9.hedef noda doğru çizgiyi çizdir.
-//11.bitir
+//9.hedef noda doğru çizgiyi çizdir
+//11.Navigasyonu başlat
+//12.Bitir
 
 public class Controller : MonoBehaviour
 {
 
-    public GameObject ARCamera;
     public GameObject Arayuz_GPS_Sapma_Dusmesi_Bekleme_Mesaji;
-    public GameObject mapCoords;
+    public GameObject ARCamera;
     public GameObject nodeIsaretci;
     public GameObject varisNoktasi;
     public GameObject cizgi;
+
+    public static int HedefNoktasi;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
 
         //Sınıf tanımları
-        GPS gps = gameObject.AddComponent<GPS>();
         Calculations calculations = gameObject.AddComponent<Calculations>();
         Algoritmalar algoritmalar = gameObject.AddComponent<Algoritmalar>();
         Draw draw = gameObject.AddComponent<Draw>();
+        GPS gps = gameObject.AddComponent<GPS>();
 
         //Arayüz objesini aratmak yerine direk gönderdik.
         gps.Arayuz_GPS_Sapma_Dusmesi_Bekleme_Mesaji = Arayuz_GPS_Sapma_Dusmesi_Bekleme_Mesaji;
 
-        //GPS başlat ve max 6 m sapma ile konumu al.
+        //GPS başlat.
         //Bu fonksyion bitene kadar diğerlerini beklet.
         yield return StartCoroutine(gps.GPS_Start());
 
         //Dünyayı kaydır.
-        calculations.Unity_Dunyasini_Hizala(gameObject, gps, mapCoords);
+        calculations.Unity_Dunyasini_Hizala(gameObject, gps);
 
         //Rota hesapla (tüm nodeleri unitye çevir. yolu hesapla. nodeleri srasına göre döndür.
-        algoritmalar.Dijkstra(gps.graph, 4);
-        Debug.Log("Rota hesaplandı.");
+        algoritmalar.Dijkstra(gps.graph, HedefNoktasi);
 
-        mapCoords.GetComponent<Text>().text += "\nkamerayı oynatın.";
+        //Yüzey tanıma için 3 sn bekle.
         yield return new WaitForSeconds(3);
-        mapCoords.GetComponent<Text>().text += "\n3 sn beklendi.";
 
-        //GPSden nodeleri al. Navigasyon algoritmasına ver. ordan node sırasını al.
-        //gidilecek nodeleri çizdir.
-        draw.Node_Ciz(gps, calculations, algoritmalar.shortestPath, nodeIsaretci, varisNoktasi, mapCoords);
-        Debug.Log("Node çizdirme başarılı.");
+        //Hangi node'lerden geçilecekse onları çizdir.
+        draw.Node_Ciz(gps, calculations, algoritmalar.shortestPath, nodeIsaretci, varisNoktasi);
 
-        //sırayla nodeleri al ve ikişer ikişer aralarında çizgi çiz
-        draw.Cizgi_Ciz(cizgi, ARCamera, calculations, mapCoords);
-        Debug.Log("Çizgiler çizdirildi.");
-
-        mapCoords.GetComponent<Text>().text +=
-                "\nÇizgiler çizdirildi.";
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        //Çizilen nodeler arası çizgileri çiz.
+        draw.Cizgi_Ciz(cizgi, ARCamera);
     }
 }

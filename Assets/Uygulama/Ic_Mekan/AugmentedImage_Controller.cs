@@ -1,6 +1,5 @@
-﻿using GoogleARCore;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GoogleARCore;
 using UnityEngine;
 
 public class AugmentedImage_Controller : MonoBehaviour
@@ -18,7 +17,7 @@ public class AugmentedImage_Controller : MonoBehaviour
     {
         if (!flag)
         {
-            // Get updated augmented images for this frame.
+            // O karede veri tabanında bulunan resim varsa onu döner.
             Session.GetTrackables<AugmentedImage>(
                 temp_AugmentedImages, TrackableQueryFilter.Updated);
 
@@ -26,7 +25,6 @@ public class AugmentedImage_Controller : MonoBehaviour
             {
                 if (image.TrackingState == TrackingState.Tracking)
                 {
-                    Debug.Log("Resim bulundu.");
                     resimIndex = image.DatabaseIndex;
                     flag = true;
                 }
