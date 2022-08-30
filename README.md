@@ -2,6 +2,7 @@
 
 An Indoor & Outdoor Navigation System Application developed with Augmented Reality. This application developed for Android platform with ARCore and Unity.
 
+
 ## Outdoor Navigation
 - In outdoor locations it uses devices GPS module for location detection.
 - The latitude and longitude information of the turning points must be registered in the system beforehand.
