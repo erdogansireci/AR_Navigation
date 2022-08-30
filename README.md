@@ -8,6 +8,6 @@ An Indoor & Outdoor Navigation System Application developed with Augmented Reali
 - The latitude and longitude information of the turning points must be registered in the system beforehand.
 
 ## Indoor Navigation
-- In indoor locations it uses image recognizing for location detection. 
+- In indoor locations it uses image recognizing for location detection.
 - In order to use the navigation system indoors, the entire environment must be mapped beforehand.
 
